@@ -1,0 +1,2 @@
+c,kappa,steps,learning_rate,evaluated_samples,clean_correct,adversarial_correct,successful_attacks,clean_accuracy,adversarial_accuracy,attack_success_rate,mean_clean_confidence,mean_adversarial_confidence,mean_l2
+1.0,0.0,50,0.01,100,93,0,93,0.93,0.0,1.0,0.9655518865585327,0.8729536390304565,0.31950476706027986
