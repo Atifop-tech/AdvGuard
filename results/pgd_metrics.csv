@@ -1,0 +1,2 @@
+epsilon,alpha,steps,random_start,evaluated_samples,clean_correct,adversarial_correct,successful_attacks,clean_accuracy,adversarial_accuracy,attack_success_rate,mean_clean_confidence,mean_adversarial_confidence,mean_linf
+0.0,0.007843,10,True,1000,923,923,0,0.923,0.923,0.0,0.9636994400024415,0.9636994476318359,0.0
