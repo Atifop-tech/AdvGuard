@@ -322,4 +322,4 @@ if __name__ == "__main__":
     print(
         f"Best Test Accuracy: "
         f"{best_accuracy:.2f}%"
-    ) 
+    )   
