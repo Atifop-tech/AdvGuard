@@ -34,6 +34,10 @@ class PurificationPairDataset(Dataset):
         source_ids = data["source_indices"].long()
         attack_ids = data["attack_ids"].long()
         binary_labels = data["binary_labels"].long()
+        if "true_labels" not in data:
+            raise KeyError(f"Missing true_labels in {self.dataset_path}")
+        true_labels = data["true_labels"].long()
+
         attack_success = data.get(
             "attack_success", torch.zeros(len(images), dtype=torch.bool)
         ).bool()
@@ -61,6 +65,7 @@ class PurificationPairDataset(Dataset):
                 attack_id,
                 bool(attack_success[adv_idx].item()),
                 source_id,
+                int(true_labels[clean_idx].item()),
             ))
 
         if not self.pairs:
@@ -74,7 +79,7 @@ class PurificationPairDataset(Dataset):
 
     def __getitem__(self, index):
         pair_index = index % len(self.pairs)
-        adversarial, clean, attack_id, attack_success, source_id = self.pairs[pair_index]
+        adversarial, clean, attack_id, attack_success, source_id, label = self.pairs[pair_index]
 
         is_clean = self.include_identity and index >= len(self.pairs)
         image = clean.clone() if is_clean else adversarial.clone()
@@ -97,5 +102,6 @@ class PurificationPairDataset(Dataset):
             "attack_id": 0 if is_clean else attack_id,
             "attack_success": False if is_clean else attack_success,
             "source_id": source_id,
+            "label": label,
             "is_clean": is_clean,
         }
