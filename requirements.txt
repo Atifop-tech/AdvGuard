@@ -8,3 +8,5 @@ pandas
 numpy
 Pillow
 tqdm
+pytest
+scipy
