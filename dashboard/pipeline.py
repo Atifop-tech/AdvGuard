@@ -4,12 +4,13 @@ from .detection import detect
 from .purification import purify
 
 
-def run_pipeline(registry, pixels, threshold=None, use_purification=True, clean_reference=None):
+def run_pipeline(registry, pixels, threshold=None, use_purification=True, clean_reference=None, use_detection=True):
     result = {}
-    try:
-        result["detection"] = detect(registry, pixels, threshold)
-    except RuntimeError as error:
-        result["detection_error"] = str(error)
+    if use_detection:
+        try:
+            result["detection"] = detect(registry, pixels, threshold)
+        except RuntimeError as error:
+            result["detection_error"] = str(error)
     final_input = pixels
     if use_purification:
         reconstruction = purify(registry, pixels, clean_reference)

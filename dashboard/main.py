@@ -72,8 +72,8 @@ async def save_result(result, original, request):
     record["heatmap"] = encode_tensor(result["heatmap"])
     if "protected" in registry.models and "purifier" in registry.models:
         try:
-            defense = await asyncio.to_thread(run_pipeline, registry, result["adversarial"], request.threshold, request.purify, original)
-            record["defense"] = {"detection": defense.get("detection"), "detection_error": defense.get("detection_error"), "protected_clean": defense.get("protected_clean"), "protected": defense["protected"], "input_prediction": defense["input_prediction"]}
+            defense = await asyncio.to_thread(run_pipeline, registry, result["adversarial"], request.threshold, request.purify, original, request.detect)
+            record["defense"] = {"detection": defense.get("detection"), "detection_error": defense.get("detection_error"), "detection_enabled": request.detect, "protected_clean": defense.get("protected_clean"), "protected": defense["protected"], "input_prediction": defense["input_prediction"]}
             if "purification" in defense:
                 record["purified_image"] = encode_tensor(defense["purification"]["image"])
                 record["defense"]["purification"] = {key: val for key, val in defense["purification"].items() if key != "image"}

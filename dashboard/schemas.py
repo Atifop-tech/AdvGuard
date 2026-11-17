@@ -14,6 +14,7 @@ class ExperimentRequest(BaseModel):
     c: float = Field(default=1.0, gt=0, le=10000)
     threshold: float | None = Field(default=None, ge=0, le=1)
     purify: bool = True
+    detect: bool = True
 
 
 class ClassifyRequest(BaseModel):
