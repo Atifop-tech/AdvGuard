@@ -19,7 +19,7 @@ EPOCHS = 20
 LEARNING_RATE = 0.001
 
 DATA_DIR = "./data"
-MODEL_DIR = "./models"
+MODEL_DIR = "./model"
 
 os.makedirs(MODEL_DIR, exist_ok=True)
 
@@ -81,15 +81,15 @@ train_loader = DataLoader(
     train_dataset,
     batch_size=BATCH_SIZE,
     shuffle=True,
-    num_workers=2,
+    num_workers=0,
 )
 
 
 test_loader = DataLoader(
     test_dataset,
     batch_size=BATCH_SIZE,
-    shuffle=False,
-    num_workers=2,
+    shuffle=False,  
+    num_workers=0,
 )
 
 
