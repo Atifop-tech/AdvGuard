@@ -32,7 +32,7 @@ class ModelRegistry:
             "protected_baseline": ("Protected ResNet-18 baseline", "model/protected_resnet18_baseline.pth", "Baseline protected classifier checkpoint"),
             "protected": ("Protected ResNet-18", "model/protected_resnet18_continued_best.pth", "Adversarially protected classifier"),
             "purifier": ("Purification CNN", "model/purifier_best.pth", "Residual image denoiser"),
-            "detector": ("Adversarial detector", "model/adversarial_detector_final.pth", "Binary adversarial detector"),
+            "detector": ("Adversarial detector", "model/adversarial_detector.pth", "Binary adversarial detector"),
         }
         for key, (name, relative, role) in self.checkpoints.items():
             path = ROOT / relative
